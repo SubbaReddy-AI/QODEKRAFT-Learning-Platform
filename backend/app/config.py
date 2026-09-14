@@ -34,15 +34,19 @@ class Settings(BaseSettings):
     # ============================================================
     # CORS
     # ============================================================
+    # CORS
     ALLOWED_ORIGINS: str = (
-        "https://qodekraft-learning-platform.vercel.app",
-        "http://localhost:5173",
+        "https://qodekraft-learning-platform.vercel.app,"
+        "http://localhost:5173,"
         "http://localhost:3000"
     )
 
-@property
-def allowed_origins_list(self) -> List[str]:
-    return [o.strip() for o in self.ALLOWED_ORIGINS.split(",")]
+    @property
+    def allowed_origins_list(self) -> List[str]:
+        return [origin.strip() for origin in self.ALLOWED_ORIGINS.split(",")]
+
+    # Frontend URL
+    FRONTEND_URL: str = "https://qodekraft-learning-platform.vercel.app"
 
 
     # ============================================================
@@ -81,11 +85,6 @@ def allowed_origins_list(self) -> List[str]:
     REMINDER_JOB_HOUR: int = 9
     REMINDER_JOB_MINUTE: int = 0
     REMINDER_HOURS_BEFORE: int = 12
-
-    # ============================================================
-    # Frontend URL
-    # ============================================================
-    FRONTEND_URL: str = "https://qodekraft-learning-platform.vercel.app"
 
     # ============================================================
     # Google Sheets — Student Details
