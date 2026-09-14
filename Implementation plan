@@ -1,0 +1,44 @@
+QODEKRAFT Learning Platform — Implementation Plan
+
+Overview
+A private online learning platform with:
+
+Frontend: React + Vite + Tailwind CSS + PWA
+Backend: Python FastAPI + SQLAlchemy + JWT Auth
+Database: MySQL
+Media Storage: Local filesystem (/media/)
+Roles: Admin, Student (RBAC enforced on API)
+
+Architecture
+qodekraft-learning-platform/
+├── frontend/          # React + Vite + Tailwind + PWA
+├── backend/           # FastAPI application
+├── media/             # Local file storage
+├── docker-compose.yml # Full stack orchestration
+├── README.md
+└── .env.example
+
+Core modules
+- Authentication and role-based access
+- Students and approval requests
+- Domains and learning access
+- Recorded classes
+- Assignments and submission review
+- Quizzes and results
+- Projects and submission review
+- Announcements
+- Progress and reports
+- Platform settings
+- PWA installation
+
+Verification Plan
+1. Start with docker compose up --build -d.
+2. Confirm MySQL is healthy.
+3. Confirm backend health endpoint returns healthy.
+4. Open the frontend and test admin login.
+5. Test student approval and domain assignment.
+6. Test recorded classes.
+7. Create an assignment, submit it as a student, and review it as admin.
+8. Create and attempt a quiz.
+9. Submit and review a project.
+10. Confirm the QODEKRAFT install control appears inside the top search bar when the browser supports PWA installation.

@@ -1,0 +1,14 @@
+{
+  "name": "QODEKRAFT Learning Platform",
+  "short_name": "QODEKRAFT",
+  "description": "Private online learning platform",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#f5f8fc",
+  "theme_color": "#061b2b",
+  "icons": [
+    {"src":"/qodekraft-icon-192.png","sizes":"192x192","type":"image/png","purpose":"any maskable"},
+    {"src":"/qodekraft-icon-512.png","sizes":"512x512","type":"image/png","purpose":"any maskable"}
+  ]
+}

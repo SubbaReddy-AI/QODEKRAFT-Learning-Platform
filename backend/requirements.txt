@@ -1,0 +1,26 @@
+fastapi==0.111.0
+uvicorn[standard]==0.29.0
+sqlalchemy==2.0.30
+mysql-connector-python==8.3.0
+pydantic==2.7.1
+pydantic-settings==2.2.1
+python-jose[cryptography]==3.3.0
+passlib[bcrypt]==1.7.4
+python-multipart==0.0.9
+aiofiles==23.2.1
+apscheduler==3.10.4
+openpyxl==3.1.2
+pandas==2.2.2
+python-dotenv==1.0.1
+fastapi-mail==1.4.1
+slowapi==0.1.9
+httpx==0.27.0
+Pillow==10.3.0
+python-magic-bin==0.4.14; sys_platform == "win32"
+python-magic==0.4.27; sys_platform != "win32"
+alembic==1.13.1
+greenlet==3.0.3
+bcrypt==4.0.1
+
+gspread==6.1.2
+google-auth==2.29.0

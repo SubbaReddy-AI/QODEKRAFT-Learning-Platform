@@ -1,0 +1,35 @@
+# Dependencies
+node_modules/
+frontend/node_modules/
+backend/venv/
+venv/
+
+# Environment files
+.env
+.env.*
+!.env.example
+
+# Build files
+frontend/dist/
+dist/
+__pycache__/
+*.pyc
+
+# Database and uploads
+*.sql
+uploads/
+media/
+
+# Logs
+*.log
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
+# Google service-account credentials
+backend/google-service-account.json
+backend/*service-account*.json
