@@ -11,7 +11,7 @@ import {
 import toast, { Toaster } from 'react-hot-toast';
 import './index.css';
 
-const API = 'https://qodekraft-learning-platform.onrender.com/api/v1';
+const API = '/api/v1';
 
 
 const studentNav = [
