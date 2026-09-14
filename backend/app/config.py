@@ -25,7 +25,7 @@ class Settings(BaseSettings):
     ADMIN_DEFAULT_PASSWORD: str
 
     # CORS
-    ALLOWED_ORIGINS: str = "http://localhost:5173,http://localhost:3000"
+    ALLOWED_ORIGINS: str = "https://qodekraft-learning-platform.vercel.app,http://localhost:5173,http://localhost:3000"
 
     @property
     def allowed_origins_list(self) -> List[str]:
@@ -59,7 +59,7 @@ class Settings(BaseSettings):
     REMINDER_HOURS_BEFORE: int = 12
 
     # Frontend URL
-    FRONTEND_URL: str = "http://localhost:5173"
+    FRONTEND_URL: str = "https://qodekraft-learning-platform.vercel.app"
 
     # Google Sheets — student details
     GOOGLE_SPREADSHEET_ID: str = ""
@@ -103,3 +103,4 @@ class Settings(BaseSettings):
 
 
 settings = Settings()
+
