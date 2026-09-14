@@ -81,7 +81,7 @@ async function request(path, options = {}, retry = true) {
     });
   } catch {
     throw new Error(
-      'Cannot reach QODEKRAFT backend. Start FastAPI on port 8000.'
+      'Cannot reach QODEKRAFT backend. Please try again.'
     );
   }
 
@@ -7294,3 +7294,4 @@ function Progress({ value = 0 }) {
 }
 
 export default App;
+
