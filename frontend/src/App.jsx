@@ -801,11 +801,10 @@ function AuthScreen({ onAuthenticated }) {
                 ? 'Please wait…'
                 : mode === 'signup'
                   ? 'Create Student Account'
-                  : `Sign in as ${
-                      role === 'admin'
-                        ? 'Admin'
-                        : 'Student'
-                    }`}
+                  : `Sign in as ${role === 'admin'
+                    ? 'Admin'
+                    : 'Student'
+                  }`}
             </Button>
           </form>
 
@@ -921,10 +920,10 @@ function InstallQodekraft() {
   }, []);
   if (installed) return null;
   const install = async () => {
-    if (deferred) { deferred.prompt(); try { await deferred.userChoice; } catch {} setDeferred(null); }
+    if (deferred) { deferred.prompt(); try { await deferred.userChoice; } catch { } setDeferred(null); }
     else toast.info("Open Chrome or Edge menu and choose Install QODEKRAFT. The app must be served from localhost or HTTPS.");
   };
-  return <button className="install-btn" onClick={install} title="Install QODEKRAFT"><ArrowDownTrayIcon/><span>Install QODEKRAFT</span></button>;
+  return <button className="install-btn" onClick={install} title="Install QODEKRAFT"><ArrowDownTrayIcon /><span>Install QODEKRAFT</span></button>;
 }
 
 /* =========================================================
@@ -1019,9 +1018,8 @@ function App() {
       <Toaster position="top-right" />
 
       <aside
-        className={`sidebar ${
-          mobile ? 'open' : ''
-        }`}
+        className={`sidebar ${mobile ? 'open' : ''
+          }`}
       >
         <div className="side-head">
           <Logo />
@@ -1195,11 +1193,11 @@ function App() {
                 {role === 'admin'
                   ? 'A'
                   : (
-                      session.full_name ||
-                      'S'
-                    )
-                      .slice(0, 1)
-                      .toUpperCase()}
+                    session.full_name ||
+                    'S'
+                  )
+                    .slice(0, 1)
+                    .toUpperCase()}
               </div>
 
               <span>
@@ -1430,11 +1428,10 @@ function StudentDashboard({ go }) {
     <>
       <PageTitle
         eyebrow="QODEKRAFT / STUDENT"
-        title={`Welcome${
-          data?.student_name
+        title={`Welcome${data?.student_name
             ? `, ${data.student_name}`
             : ''
-        }`}
+          }`}
         subtitle="Your assigned learning workspace, progress and upcoming work."
       />
 
@@ -1872,10 +1869,10 @@ function StudentRecordings() {
 
                   {recording.progress
                     ?.is_completed && (
-                    <Badge tone="green">
-                      Completed
-                    </Badge>
-                  )}
+                      <Badge tone="green">
+                        Completed
+                      </Badge>
+                    )}
                 </div>
 
                 <h3>
@@ -1973,13 +1970,13 @@ function VideoModal({
       request(
         `/student/recordings/${item.id}/progress?watched_seconds=${time}&duration_seconds=${Math.floor(
           event.currentTarget.duration ||
-            item.duration_seconds ||
-            1
+          item.duration_seconds ||
+          1
         )}`,
         {
           method: 'POST',
         }
-      ).catch(() => {});
+      ).catch(() => { });
     }
   };
 
@@ -2189,7 +2186,7 @@ function StudentAssignments() {
                 `/student/assignments?domain_id=${domainId}`
               )
                 .then(setItems)
-                .catch(() => {});
+                .catch(() => { });
             }
           }}
         />
@@ -2513,10 +2510,10 @@ function QuizAttempt({
             selected_option_ids:
               answers[question.id]
                 ? [
-                    answers[
-                      question.id
-                    ],
-                  ]
+                  answers[
+                  question.id
+                  ],
+                ]
                 : [],
           })
         );
@@ -2551,10 +2548,9 @@ function QuizAttempt({
       <PageTitle
         eyebrow="QODEKRAFT / QUIZ"
         title="Quiz attempt"
-        subtitle={`${quiz.questions.length} questions · ${
-          quiz.time_limit_minutes ||
+        subtitle={`${quiz.questions.length} questions · ${quiz.time_limit_minutes ||
           'No'
-        } minute limit`}
+          } minute limit`}
         action={
           <Button
             variant="outline"
@@ -2594,7 +2590,7 @@ function QuizAttempt({
                         name={`q-${question.id}`}
                         checked={
                           answers[
-                            question.id
+                          question.id
                           ] === option.id
                         }
                         onChange={() =>
@@ -2897,7 +2893,7 @@ function StudentProjects() {
               `/student/projects?domain_id=${domainId}`
             )
               .then(setItems)
-              .catch(() => {});
+              .catch(() => { });
           }}
         />
       )}
@@ -3110,7 +3106,7 @@ function StudentAnnouncements() {
                   Published{' '}
                   {dateText(
                     announcement.published_at ||
-                      announcement.created_at
+                    announcement.created_at
                   )}
                 </small>
               </article>
@@ -3703,7 +3699,7 @@ function AdminStudents({
               placeholder="Search name, email or phone"
               onKeyDown={(event) =>
                 event.key ===
-                  'Enter' &&
+                'Enter' &&
                 load()
               }
             />
@@ -3759,10 +3755,10 @@ function AdminStudents({
                       <Badge
                         tone={
                           student.status ===
-                          'approved'
+                            'approved'
                             ? 'green'
                             : student.status ===
-                                'pending'
+                              'pending'
                               ? 'amber'
                               : 'red'
                         }
@@ -3815,53 +3811,53 @@ function AdminStudents({
                       <div className="actions">
                         {student.status ===
                           'pending' && (
-                          <Button
-                            variant="small"
-                            onClick={() =>
-                              act(
-                                student.id,
-                                'approve'
-                              )
-                            }
-                          >
-                            Approve
-                          </Button>
-                        )}
+                            <Button
+                              variant="small"
+                              onClick={() =>
+                                act(
+                                  student.id,
+                                  'approve'
+                                )
+                              }
+                            >
+                              Approve
+                            </Button>
+                          )}
 
                         {student.status ===
                           'approved' && (
-                          <Button
-                            variant="small danger-btn"
-                            onClick={() =>
-                              act(
-                                student.id,
-                                'suspend'
-                              )
-                            }
-                          >
-                            Suspend
-                          </Button>
-                        )}
+                            <Button
+                              variant="small danger-btn"
+                              onClick={() =>
+                                act(
+                                  student.id,
+                                  'suspend'
+                                )
+                              }
+                            >
+                              Suspend
+                            </Button>
+                          )}
 
                         {student.status ===
                           'blocked' && (
-                          <Button
-                            variant="small"
-                            onClick={() =>
-                              act(
-                                student.id,
-                                'unblock'
-                              )
-                            }
-                          >
-                            Unblock
-                          </Button>
-                        )}
+                            <Button
+                              variant="small"
+                              onClick={() =>
+                                act(
+                                  student.id,
+                                  'unblock'
+                                )
+                              }
+                            >
+                              Unblock
+                            </Button>
+                          )}
 
                         {student.status !==
                           'blocked' &&
                           student.status !==
-                            'pending' && (
+                          'pending' && (
                             <Button
                               variant="small danger-btn"
                               onClick={() =>
@@ -4484,7 +4480,7 @@ function AdminRecordings() {
 
           setItems(
             recordingData.recordings ||
-              []
+            []
           );
         }
       )
@@ -4722,7 +4718,7 @@ function AdminRecordings() {
                   setVideo(
                     event.target
                       .files?.[0] ||
-                      null
+                    null
                   )
                 }
               />
@@ -4736,7 +4732,7 @@ function AdminRecordings() {
                   setThumb(
                     event.target
                       .files?.[0] ||
-                      null
+                    null
                   )
                 }
               />
@@ -4901,7 +4897,7 @@ function AdminAssignments() {
 
           setItems(
             assignmentData.assignments ||
-              []
+            []
           );
         }
       )
@@ -5270,17 +5266,17 @@ function SubmissionReviewModal({ type, item, onClose }) {
           {submissions.length ? submissions.map((sub) => (
             <div className="panel" key={sub.id} style={{ marginBottom: 12 }}>
               <div className="card-line"><strong>{sub.student_name || `Student #${sub.student_id}`}</strong><small>{sub.student_email || ''}</small><Badge tone={sub.status === 'approved' ? 'green' : 'amber'}>{sub.status}</Badge></div>
-              {type === 'project' && <><p>{sub.description || 'No description'}</p><p>GitHub: {sub.github_link ? <a href={sub.github_link} target="_blank" rel="noreferrer">{sub.github_link}</a> : '—'}<br/>Live demo: {sub.live_demo_link ? <a href={sub.live_demo_link} target="_blank" rel="noreferrer">{sub.live_demo_link}</a> : '—'}</p></>}
+              {type === 'project' && <><p>{sub.description || 'No description'}</p><p>GitHub: {sub.github_link ? <a href={sub.github_link} target="_blank" rel="noreferrer">{sub.github_link}</a> : '—'}<br />Live demo: {sub.live_demo_link ? <a href={sub.live_demo_link} target="_blank" rel="noreferrer">{sub.live_demo_link}</a> : '—'}</p></>}
               {sub.files?.length > 0 && <div className="stack"><strong>Uploaded files</strong>{sub.files.map((f) => <button className="link-button" key={f.id} onClick={() => downloadProtectedFile(`/admin/${type === 'assignment' ? 'assignments' : 'projects'}/${item.id}/submissions/${sub.id}/files/${f.id}`, f.original_name || f.file_name).catch(errorToast)}>{f.original_name || f.file_name}</button>)}</div>}
               <div className="form-grid">
-                <Field label="Status"><select value={editing?.id === sub.id ? editing.status : sub.status} onChange={(e) => setEditing({...sub, status: e.target.value})}><option value="under_review">Under review</option><option value="reviewed">Reviewed</option><option value="returned">Returned</option><option value="approved">Approved</option><option value="rejected">Rejected</option></select></Field>
-                <Field label="Marks"><input type="number" value={editing?.id === sub.id ? (editing.marks_obtained ?? '') : (sub.marks_obtained ?? '')} onChange={(e) => setEditing({...sub, marks_obtained: e.target.value})}/></Field>
+                <Field label="Status"><select value={editing?.id === sub.id ? editing.status : sub.status} onChange={(e) => setEditing({ ...sub, status: e.target.value })}><option value="under_review">Under review</option><option value="reviewed">Reviewed</option><option value="returned">Returned</option><option value="approved">Approved</option><option value="rejected">Rejected</option></select></Field>
+                <Field label="Marks"><input type="number" value={editing?.id === sub.id ? (editing.marks_obtained ?? '') : (sub.marks_obtained ?? '')} onChange={(e) => setEditing({ ...sub, marks_obtained: e.target.value })} /></Field>
               </div>
-              <Field label="Feedback"><textarea value={editing?.id === sub.id ? (editing.feedback || '') : (sub.feedback || '')} onChange={(e) => setEditing({...sub, feedback: e.target.value})}/></Field>
-              {type === 'assignment' && <Field label="Correction request"><textarea value={editing?.id === sub.id ? (editing.correction_request || '') : (sub.correction_request || '')} onChange={(e) => setEditing({...sub, correction_request: e.target.value})}/></Field>}
-              <Button onClick={() => { setEditing({...sub}); }} disabled={busy}>{editing?.id === sub.id ? 'Editing submission' : 'Select for review'}</Button>{editing?.id === sub.id && <Button variant="outline" onClick={review} disabled={busy}>Save review</Button>}
+              <Field label="Feedback"><textarea value={editing?.id === sub.id ? (editing.feedback || '') : (sub.feedback || '')} onChange={(e) => setEditing({ ...sub, feedback: e.target.value })} /></Field>
+              {type === 'assignment' && <Field label="Correction request"><textarea value={editing?.id === sub.id ? (editing.correction_request || '') : (sub.correction_request || '')} onChange={(e) => setEditing({ ...sub, correction_request: e.target.value })} /></Field>}
+              <Button onClick={() => { setEditing({ ...sub }); }} disabled={busy}>{editing?.id === sub.id ? 'Editing submission' : 'Select for review'}</Button>{editing?.id === sub.id && <Button variant="outline" onClick={review} disabled={busy}>Save review</Button>}
             </div>
-          )) : <EmptyState icon={DocumentTextIcon} title="No submissions" text="Students have not submitted this work yet."/>}
+          )) : <EmptyState icon={DocumentTextIcon} title="No submissions" text="Students have not submitted this work yet." />}
         </div>
         <div className="modal-actions"><Button variant="outline" onClick={onClose}>Close</Button></div>
       </div>
@@ -5587,13 +5583,13 @@ function AdminQuizzes() {
     const options = Array.from({ length: 4 }, (_, index) =>
       question.options?.[index]
         ? {
-            option_text: question.options[index].option_text || '',
-            is_correct: Boolean(question.options[index].is_correct),
-          }
+          option_text: question.options[index].option_text || '',
+          is_correct: Boolean(question.options[index].is_correct),
+        }
         : {
-            option_text: '',
-            is_correct: false,
-          }
+          option_text: '',
+          is_correct: false,
+        }
     );
 
     setQuestionForm({
@@ -6629,8 +6625,8 @@ function AdminAnnouncements() {
               ? null
               : form.domain_id
                 ? Number(
-                    form.domain_id
-                  )
+                  form.domain_id
+                )
                 : null,
           }),
         }
