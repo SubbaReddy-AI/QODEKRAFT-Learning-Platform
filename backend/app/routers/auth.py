@@ -162,6 +162,9 @@ async def login(payload: LoginRequest, request: Request, db: Session = Depends(g
     if not user:
         raise HTTPException(status_code=401, detail="Invalid email or password")
 
+    if not user.is_active:
+        raise HTTPException(status_code=403, detail="Account is deactivated. Contact the administrator.")
+
     # Check lockout
     if user.lockout_until and user.lockout_until > datetime.utcnow():
         remaining = int((user.lockout_until - datetime.utcnow()).total_seconds() // 60)
